@@ -1,0 +1,6 @@
+ID,Name,Age,Phone,SSN,Address,Specialty,TotalTreated
+1,Ahmed,35,01011112222,12345678901234,Cairo,internal,0
+2,Sarah,29,01022223333,22345678901234,Alexandria,pediatrics,0
+3,Mohamed,42,01033334444,32345678901234,Giza,surgery,0
+4,Fatima,31,01044445555,42345678901234,Mansoura,cardiology,4
+5,Khaled,38,01055556666,52345678901234,Tanta,general,2

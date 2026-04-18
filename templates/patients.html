@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Patient Queues Overview</h1>
+</div>
+
+{% include 'kpi_cards.html' %}
+
+<div class="queues-grid mt-2">
+    <!-- Currently Treating -->
+    <div class="queue-card current-treating">
+        <div class="queue-header">
+            <h3><i class="fa-solid fa-user-nurse"></i> Currently Treating</h3>
+        </div>
+        <div class="queue-body" id="queue-treating">
+            <!-- Populated via JS -->
+        </div>
+    </div>
+
+    <!-- Critical Queue -->
+    <div class="queue-card critical-queue">
+        <div class="queue-header">
+            <h3><i class="fa-solid fa-truck-medical"></i> Critical Queue</h3>
+        </div>
+        <div class="queue-body" id="queue-critical">
+            <!-- Populated via JS -->
+        </div>
+    </div>
+
+    <!-- Normal Queue -->
+    <div class="queue-card normal-queue">
+        <div class="queue-header">
+            <h3><i class="fa-solid fa-bed"></i> Normal Queue</h3>
+        </div>
+        <div class="queue-body" id="queue-normal">
+            <!-- Populated via JS -->
+        </div>
+    </div>
+
+    <!-- Future Appointments -->
+    <div class="queue-card future-queue">
+        <div class="queue-header">
+            <h3><i class="fa-regular fa-calendar"></i> Future Appointments</h3>
+        </div>
+        <div class="queue-body" id="queue-future">
+            <!-- Populated via JS -->
+        </div>
+    </div>
+</div>
+{% endblock %}

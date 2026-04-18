@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Emergency System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon"><i class="fa-solid fa-house-medical"></i></div>
+                <h2>Hosbital Emergency System</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('add_patient') }}" class="nav-item {{ 'active' if request.endpoint == 'add_patient' else '' }}">
+                    <i class="fa-solid fa-user-plus"></i> Add Patient
+                </a>
+                <a href="{{ url_for('patients') }}" class="nav-item {{ 'active' if request.endpoint == 'patients' else '' }}">
+                    <i class="fa-solid fa-bed-pulse"></i> Patients
+                </a>
+                <a href="{{ url_for('doctors') }}" class="nav-item {{ 'active' if request.endpoint == 'doctors' else '' }}">
+                    <i class="fa-solid fa-user-doctor"></i> Doctors
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="nav-item theme-btn">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i> <span id="theme-text">Dark Mode</span>
+                </button>
+                <a href="{{ url_for('logout') }}" class="nav-item logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- UI Overlay for Modals -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

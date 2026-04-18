@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>Hospital Doctors</h1>
+    <div class="actions">
+        <button class="btn-primary" onclick="openAddDoctorModal()"><i class="fa-solid fa-plus"></i> Add Doctor</button>
+        <button class="btn-danger" onclick="openDeleteDoctorModal()"><i class="fa-solid fa-trash"></i> Remove Doctor</button>
+    </div>
+</div>
+
+<div class="doctors-grid" id="doctors-list">
+    <!-- Populated via JS -->
+</div>
+
+<!-- History Modal -->
+<div class="modal" id="historyModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Doctor History</h3>
+            <button class="close-btn" onclick="closeModal('historyModal')"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="history-stats">
+                <div class="stat-box">
+                    <span>Total Treated</span>
+                    <h4 id="history-total">0</h4>
+                </div>
+                <div class="stat-box">
+                    <span>Max Treatment Time</span>
+                    <h4 id="history-max">0s</h4>
+                </div>
+            </div>
+            <div class="history-list" id="history-patients">
+                <!-- Data here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Doctor Modal -->
+<div class="modal" id="addDoctorModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add New Doctor</h3>
+            <button class="close-btn" onclick="closeModal('addDoctorModal')"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <form id="addDoctorForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="d_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Age (25-60)</label>
+                    <input type="number" id="d_age" min="25" max="60" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone (11 digits, starts with 0)</label>
+                    <input type="text" id="d_phone" pattern="0[0-9]{10}" required>
+                </div>
+                <div class="form-group">
+                    <label>SSN (14 digits)</label>
+                    <input type="text" id="d_ssn" pattern="[0-9]{14}" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="d_address" required>
+                </div>
+                <div class="form-group">
+                    <label>Specialty</label>
+                    <input type="text" id="d_spec" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem;">Confirm Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Doctor Modal -->
+<div class="modal" id="deleteDoctorModal">
+    <div class="modal-content" style="max-width: 400px;">
+        <div class="modal-header">
+            <h3>Remove Doctor</h3>
+            <button class="close-btn" onclick="closeModal('deleteDoctorModal')"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <form id="deleteDoctorForm">
+                <div class="form-group">
+                    <label>Doctor ID to Remove</label>
+                    <input type="number" id="del_d_id" required>
+                </div>
+                <button type="submit" class="btn-danger" style="width: 100%; margin-top: 1rem;">Confirm Remove</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

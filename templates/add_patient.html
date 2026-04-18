@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Add New Patient</h1>
+</div>
+
+{% include 'kpi_cards.html' %}
+
+<div class="card form-container mt-2">
+    <h3>Patient Admission Form</h3>
+    <form id="addPatientForm">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="p_name" required>
+            </div>
+            <div class="form-group">
+                <label>Age (1-100)</label>
+                <input type="number" id="p_age" min="1" max="100" required>
+            </div>
+            <div class="form-group">
+                <label>Phone (11 digits starting with 0)</label>
+                <input type="text" id="p_phone" pattern="0[0-9]{10}" title="Must be 11 digits starting with 0" required>
+            </div>
+            <div class="form-group">
+                <label>SSN (14 digits)</label>
+                <input type="text" id="p_ssn" pattern="[0-9]{14}" title="Must be exactly 14 digits" required>
+            </div>
+            <div class="form-group">
+                <label>Specialty</label>
+                <select id="p_spec" required>
+                    {% for spec in specialties %}
+                    <option value="{{ spec }}">{{ spec }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Priority</label>
+                <select id="p_prio" required>
+                    <option value="5">5 - Critical</option>
+                    <option value="4">4 - High</option>
+                    <option value="3">3 - Medium</option>
+                    <option value="2">2 - Low</option>
+                    <option value="1">1 - Minimal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Appointment Day</label>
+                <input type="date" id="p_day" required>
+            </div>
+            <div class="form-group">
+                <label>Treatment Duration (Seconds)</label>
+                <input type="number" id="p_dur" min="1" max="1800" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Symptoms</label>
+            <textarea id="p_sym" rows="2" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary mt-1">Submit Patient</button>
+    </form>
+</div>
+<script>
+    // Set minimum date to today in local YYYY-MM-DD format
+    const now = new Date();
+    const today = now.getFullYear() + '-' + 
+                  String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                  String(now.getDate()).padStart(2, '0');
+    
+    const dayInput = document.getElementById('p_day');
+    dayInput.min = today;
+    dayInput.value = today;
+</script>
+{% endblock %}
